@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+    
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
+    <!-- JQuery styles-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!--My own style-->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav>
+        <span>Kanban</span>
+        <a href="./login"><button>Salir</button></a>
+    </nav>
+    
+    
+    <div id="wrapper">
+        <button id="cl">Don't click</button>
+
+        <form id="form" action="./" method="post">
+            <input type="text" name="nombre">
+            <button type="submit" name="ok" id="formb">Aceptar</button>
+        </form>
+
+
+        <div id="grid">
+            <div class="title">
+                <span>To Do</span>
+            </div>
+            <div class="title">
+                <span>On Process</span>
+            </div>
+            <div class="title">
+                <span>Testing</span>
+            </div>
+            <div class="title">
+                <span>Done</span>
+            </div>
+            <!--    Second Column   -->
+            <div id="sortable1" class="sortable">
+                <div class="task">
+                    <span class="task-title">Elemento</span>
+                    <span class="des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio obcaecati quibusdam qui </span>
+                    <span class="fet">2020-05-13</span>
+                </div>
+            </div>
+
+            <div id="sortable2" class="sortable">
+                <div class="task">
+                    <span class="task-title">Elemento</span>
+                    <span class="des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio obcaecati quibusdam qui </span>
+                    <span class="fet">2020-05-13</span>
+                </div>
+            </div>
+
+            <div id="sortable3" class="sortable">
+                <div class="task">
+                    <span class="task-title">Elemento</span>
+                    <span class="des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio obcaecati quibusdam qui </span>
+                    <span class="fet">2020-05-13</span>
+                </div>
+            </div>
+
+            <div id="sortable4" class="sortable">
+                <div class="task">
+                    <span class="task-title">Elemento</span>
+                    <span class="des">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio obcaecati quibusdam qui </span>
+                    <span class="fet">2020-05-13</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--<ul id="sortable1" class="droptrue">
+        <li id="one" class="ui-state-default">Can be dropped..</li>
+        <li id="two" class="ui-state-default">..on an empty list</li>
+        <li id="three" class="ui-state-default">Item 3</li>
+        <li id="four" class="ui-state-default">Item 4</li>
+        <li id="five" class="ui-state-default">Item 5</li>
+    </ul>-->
+       
+      <!--<ul id="sortable2" class="dropfalse">
+        <ul id="sortable2" class="droptrue">
+        <li class="ui-state-default">Cannot be dropped..</li>
+        <li class="ui-state-default">..on an empty list</li>
+        <li class="ui-state-default">Item 3</li>
+        <li class="ui-state-default">Item 4</li>
+        <li class="ui-state-default">Item 5</li>
+      </ul>
+       
+      <ul id="sortable3" class="droptrue">
+      </ul>-->
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

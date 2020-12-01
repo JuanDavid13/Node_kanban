@@ -51,24 +51,46 @@ socket.on('list',(lists)=>{
             task.classList.add('task');
             
             switch(i){
-                case 0:{
-                    //console.log('todo');
-                    todo.appendChild(task);
-                };break;
-                case 1:{
-                    //console.log('progress');
-                    progress.appendChild(task);
-                };break;
-                case 2:{
-                    //console.log('testing');
-                    testing.appendChild(task);
-                };break;
-                case 3:{
-                    //console.log('done');
-                    done.appendChild(task);
-                };break;
+                case 0:{todo.appendChild(task);};break;
+                case 1:{progress.appendChild(task);};break;
+                case 2:{testing.appendChild(task);};break;
+                case 3:{done.appendChild(task);};break;
                 default:{};break;
             }
+        }
+    }
+
+    for(let k = 0; k < 4; k++){
+        const plus = document.createElement('div');
+        plus.classList.add('plus');
+        plus.innerText = '+';
+
+        $('<input>').attr({
+          type : 'text',
+          placeholder: 'Nombre',
+          class: 'input'
+        }).appendTo(plus);
+        $('<input>').attr({
+            type : 'text',
+            placeholder: 'Description',
+            class: 'input'
+          }).appendTo(plus);
+        $('<input>').attr({
+            type : 'date',
+            class: 'input'
+          }).appendTo(plus);
+        $('<input>').attr({
+            type : 'submit',
+            class: 'input-add',
+            value:'Add'
+          }).appendTo(plus);
+
+        switch(k){
+            case 0:{todo.appendChild(plus);};break;
+            case 1:{progress.appendChild(plus);};break;
+            case 2:{testing.appendChild(plus);};break;
+            case 3:{done.appendChild(plus);};break;
+            default:{};break;
         }
     }
 });
@@ -83,9 +105,17 @@ $( function() {
         connectWith: '.sortable',
         cursor: 'grabbing',
         placeholder: "plholder",
+        items:'div:not(.plus)',
+        revert:200,
         update: (event,ui)=>{
             let arr = [];
 
+        },
+        start: (event,ui)=>{
+            ui.item.css('transform','rotate(10deg)'); 
+        },
+        stop: (event,ui)=>{
+            ui.item.css('transform','rotate(0deg)'); 
         }
     });
 
@@ -127,9 +157,6 @@ $( function() {
       connectWith: "ul",
       dropOnEmpty: false
     });*/
-
-
-    //$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
 
     $('#todo','#progress','testing','#done').disableSelection();
   } );

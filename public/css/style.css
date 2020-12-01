@@ -70,7 +70,6 @@ nav button:hover{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: 50px 1fr;
-
 }
 
 .title{
@@ -91,6 +90,7 @@ nav button:hover{
     align-items: flex-start;
 
     transition: box-shadow .5s ease;
+    transition: transform .2s ease-out;
 
     margin:5px 0px;
 }
@@ -119,8 +119,6 @@ nav button:hover{
 
 }
 
-.ui-state-highlight { height: 1.5em; line-height: 1.2em; width: 95%;}
-
 .plholder{
     height: 150px;
     width: 95%;
@@ -128,4 +126,53 @@ nav button:hover{
     background-color: var(--tra);
     border: 4px solid var(--light);
     border-style: dashed;
+}
+
+.plus{
+    width: 95%;
+    color: var(--sup);
+    font-size: 1.5em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+
+    cursor: pointer;
+
+    border: 1px solid var(--light);
+}
+
+/*      codigo redundante en estas dos cosas        */
+.input{
+    background-color: var(--light);
+    color: white;
+    border: none;
+    border-radius: 0px;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 90%;
+}
+
+.input-add{
+    background-color: var(--sup);
+    color: var(--back);
+    border: none;
+    border-radius: 0px;
+    padding: 10px;
+    margin-bottom: 5px;
+    width: 90%;
+
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+::placeholder{
+    color: white;
+    font-weight: 300;
+}
+
+input:focus{
+    outline: 2px solid var(--sup);
+    border: none;
 }

@@ -6,6 +6,12 @@ const form = document.getElementById('form');
 const formb = document.getElementById('formb');
 
 
+const todo = document.getElementById('todo');
+const progress = document.getElementById('progress');
+const testing = document.getElementById('testing');
+const done = document.getElementById('done');
+
+
 cl.addEventListener('click',()=>{
     //socket.emit('clicked','nose');
     let e = new evento('tarea algo','algo');
@@ -14,20 +20,56 @@ cl.addEventListener('click',()=>{
     console.log(e.getNombre());
 });
 
-socket.on('list',(list)=>{
-    $('#sortable1').empty();
-    let i;
-    for(i = 0; i< list.length ; i++){
-        const task = document.createElement('div');
-        const taskTitle = document.createElement('span');
-        const taskDesc = document.createElement('span');
-        const taskFech = document.createElement('span');
+socket.on('list',(lists)=>{
+    $('.sortable').empty();
+  
+    for(let i = 0; i< lists.length ; i++){
 
-        
-        e.innerHTML = `${list[i][1]}`;
-        e.classList.add('ui-state-default');
+        for(let j = 0; j < lists[i].length;j++){
 
-        l1.appendChild(e);
+            //console.log(lists[i].length);        
+            //console.log(lists[i][j][2]);
+
+            const task = document.createElement('div');
+
+            const taskTitle = document.createElement('span');
+            const taskDesc = document.createElement('span');
+            const taskFech = document.createElement('span');
+
+            taskTitle.innerText = lists[i][j][0];
+            taskDesc.innerText = lists[i][j][1];
+            taskFech.innerText = lists[i][j][2];
+
+            taskTitle.classList.add('task-title');
+            taskDesc.classList.add('des');
+            taskFech.classList.add('fet');
+
+            task.appendChild(taskTitle);
+            task.appendChild(taskDesc);
+            task.appendChild(taskFech);
+
+            task.classList.add('task');
+            
+            switch(i){
+                case 0:{
+                    //console.log('todo');
+                    todo.appendChild(task);
+                };break;
+                case 1:{
+                    //console.log('progress');
+                    progress.appendChild(task);
+                };break;
+                case 2:{
+                    //console.log('testing');
+                    testing.appendChild(task);
+                };break;
+                case 3:{
+                    //console.log('done');
+                    done.appendChild(task);
+                };break;
+                default:{};break;
+            }
+        }
     }
 });
 
@@ -37,9 +79,10 @@ $( function() {
         event.preventDefault();
     });*/
 
-    $('task').sortable({
+    $('.sortable').sortable({
         connectWith: '.sortable',
         cursor: 'grabbing',
+        placeholder: "plholder",
         update: (event,ui)=>{
             let arr = [];
 
@@ -86,5 +129,7 @@ $( function() {
     });*/
 
 
-    $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+    //$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+
+    $('#todo','#progress','testing','#done').disableSelection();
   } );

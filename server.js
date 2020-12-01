@@ -71,6 +71,7 @@ let lists = [todo,progress];
 io.on('connection', (socket) =>{
     //console.clear();
     console.log(lists[0][0][0]);
+    io.emit('list',lists);
     /*
     io.emit('list',list1);
     socket.on('clicked',(text)=>{

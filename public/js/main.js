@@ -6,10 +6,10 @@ const form = document.getElementById('form');
 const formb = document.getElementById('formb');
 
 
-const todo = document.getElementById('todo');
-const progress = document.getElementById('progress');
-const testing = document.getElementById('testing');
-const done = document.getElementById('done');
+const todo = document.getElementById('todoWrap');
+const progress = document.getElementById('progressWrap');
+const testing = document.getElementById('testingWrap');
+const done = document.getElementById('doneWrap');
 
 
 cl.addEventListener('click',()=>{
@@ -22,9 +22,8 @@ cl.addEventListener('click',()=>{
 
 socket.on('list',(lists)=>{
     $('.sortable').empty();
-  
-    for(let i = 0; i< lists.length ; i++){
 
+    for(let i = 0; i< lists.length ; i++){
         for(let j = 0; j < lists[i].length;j++){
 
             //console.log(lists[i].length);        
@@ -59,40 +58,6 @@ socket.on('list',(lists)=>{
             }
         }
     }
-
-    for(let k = 0; k < 4; k++){
-        const plus = document.createElement('div');
-        plus.classList.add('plus');
-        plus.innerText = '+';
-
-        $('<input>').attr({
-          type : 'text',
-          placeholder: 'Nombre',
-          class: 'input'
-        }).appendTo(plus);
-        $('<input>').attr({
-            type : 'text',
-            placeholder: 'Description',
-            class: 'input'
-          }).appendTo(plus);
-        $('<input>').attr({
-            type : 'date',
-            class: 'input'
-          }).appendTo(plus);
-        $('<input>').attr({
-            type : 'submit',
-            class: 'input-add',
-            value:'Add'
-          }).appendTo(plus);
-
-        switch(k){
-            case 0:{todo.appendChild(plus);};break;
-            case 1:{progress.appendChild(plus);};break;
-            case 2:{testing.appendChild(plus);};break;
-            case 3:{done.appendChild(plus);};break;
-            default:{};break;
-        }
-    }
 });
 
 $( function() {
@@ -100,6 +65,7 @@ $( function() {
     /*$('#formb').click((event)=>{
         event.preventDefault();
     });*/
+
 
     $('.sortable').sortable({
         connectWith: '.sortable',
@@ -112,11 +78,15 @@ $( function() {
 
         },
         start: (event,ui)=>{
-            ui.item.css('transform','rotate(10deg)'); 
+            ui.item.css('transform','rotate(10deg)');
         },
         stop: (event,ui)=>{
             ui.item.css('transform','rotate(0deg)'); 
         }
+    });
+
+    $('.plus').click(()=>{
+        console.log('hola');
     });
 
     /*

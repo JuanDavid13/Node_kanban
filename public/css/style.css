@@ -135,12 +135,27 @@ nav button:hover{
 
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:start;
     align-items: center;
 
     cursor: pointer;
-
+    padding: 5px;
+    margin-top:5px;
     border: 1px solid var(--light);
+
+    height: 40px;
+    overflow: hidden;
+
+    transition: all 1s ease;
+}
+
+.plus:hover{
+    height: auto;
+}
+
+.plus-sign{
+    display: block;
+    min-height: 35px;
 }
 
 /*      codigo redundante en estas dos cosas        */

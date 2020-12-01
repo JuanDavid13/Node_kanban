@@ -65,20 +65,40 @@ let progress = [
     ]
 ];
 
-let lists = [todo,progress];
+let testing = [
+    [
+        'Terminar Backend',
+        'Alguna descripción aquí',
+        '11-12-2020'
+    ]
+];
+
+let done = [
+    [
+        'Terminar Frontend',
+        'Alguna descripción aquí',
+        '11-12-2020'
+    ]
+];
+
+let lists = [todo,progress,testing,done];
 
 //socket io
 io.on('connection', (socket) =>{
     //console.clear();
     console.log(lists[0][0][0]);
     io.emit('list',lists);
+
+    socket.on('change',(li)=>{
+        console.log(li.length);
+    });
     /*
     io.emit('list',list1);
     socket.on('clicked',(text)=>{
         list1.push(text);
         io.emit('list',list1);
     });
-
+    
     socket.on('change',(arr)=>{
         //console.log(array.length);
         console.log('///////////////////');

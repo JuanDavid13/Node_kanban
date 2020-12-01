@@ -11,7 +11,7 @@ const progress = document.getElementById('progressWrap');
 const testing = document.getElementById('testingWrap');
 const done = document.getElementById('doneWrap');
 
-
+/*
 cl.addEventListener('click',()=>{
     //socket.emit('clicked','nose');
     let e = new evento('tarea algo','algo');
@@ -19,6 +19,7 @@ cl.addEventListener('click',()=>{
     e.setNombre('tarea 6');
     console.log(e.getNombre());
 });
+*/
 
 socket.on('list',(lists)=>{
     $('.sortable').empty();
@@ -62,20 +63,123 @@ socket.on('list',(lists)=>{
 
 $( function() {
     
-    /*$('#formb').click((event)=>{
+    $('.plus').click((event)=>{
         event.preventDefault();
-    });*/
+    });
+
+
+    //Quizas es mejor hacerlo con un arrray y un foreach
+    $('#tsPlus').click(()=>{
+        if($('#tPlus').css('height') == '215px'){
+            $('#tsPlus').css('transform','rotate(0deg)');
+            $('#tPlus').css('height','35px');
+            //hay que hacer desaparecer a los otros elementos
+            //.css('display','none');
+        }else{
+            $('#tPlus').css('height','215px');
+            $('#tsPlus').css('transform','rotate(45deg)');
+        }        
+    })
+
+    $('#psPlus').click(()=>{
+        if($('#pPlus').css('height') == '215px'){
+            $('#pPlus').css('height','40px');
+            //hay que hacer desaparecer a los otros elementos
+            //.css('display','none');
+        }else{$('#pPlus').css('height','215px');}        
+    })
+
+    $('#tesPlus').click(()=>{
+        if($('#tePlus').css('height') == '215px'){
+            $('#tePlus').css('height','40px');
+            //hay que hacer desaparecer a los otros elementos
+            //.css('display','none');
+        }else{$('#tePlus').css('height','215px');}        
+    })
+
+    $('#dsPlus').click(()=>{
+        if($('#dPlus').css('height') == '215px'){
+            $('#dPlus').css('height','40px');
+            //hay que hacer desaparecer a los otros elementos
+            //.css('display','none');
+        }else{$('#dPlus').css('height','215px');}        
+    })
 
 
     $('.sortable').sortable({
         connectWith: '.sortable',
+        dropOnEmpty: true,
         cursor: 'grabbing',
         placeholder: "plholder",
         items:'div:not(.plus)',
         revert:200,
         update: (event,ui)=>{
             let arr = [];
+            let todo = [];
+            let progress = [];
+            let testing = [];
+            let done = [];
+            //console.log($('#todoWrap div').length);
+            //console.log($('#grid').toArray()[0]['childNodes'][15]['childNodes'][1]['childNodes'][0]['childNodes']);
+            //console.log($('#todoWrap div').toArray()[0]['childNodes'][0].innerHTML);
 
+
+            //const tam = $('#grid').toArray()[0]['childNodes'][15]['childNodes'][1]['childNodes'].length;
+            //console.log($('#grid').toArray()[0]['childNodes'][15]['childNodes'][1]['childNodes'][1]);
+
+            for(let i = 15; i < 23; i+=2){
+                let tam = $('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'].length;
+                for(let j = 0; j< tam; j++){
+                    let tam2 = $('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'].length;
+                    //console.log($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'].length);
+                    let aux = [];
+                    for(let k = 0; k < tam2; k++){
+                        //console.log($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML)
+                        
+                        switch(i){
+                            case 15:{
+                                //console.log('todo');                                
+                                aux.push($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML);     
+                            };break;
+                            case 17:{
+                                //console.log('progress')
+                                aux.push($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML);
+                            };break;
+                            case 17:{
+                                //console.log('progress')
+                                aux.push($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML);
+                            };break;
+                            case 19:{
+                                //console.log('testing')
+                                aux.push($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML);
+                            };break;
+                            case 21:{
+                                //console.log('done')
+                                aux.push($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][k].innerHTML);
+                            };break;
+                            default:{console.log('An error has occurred')};break;
+                        }
+                        
+                    }
+                    switch(i){
+                        case 15:{todo.push(aux);};break;
+                        case 17:{progress.push(aux);};break;
+                        case 19:{testing.push(aux);};break;
+                        case 21:{done.push(aux);};break;
+                        default:{};break;
+                    }
+                        
+                   //console.log($('#grid').toArray()[0]['childNodes'][i]['childNodes'][1]['childNodes'][j]['childNodes'][0].innerHTML);
+                }
+            }
+
+            arr.push(todo);
+            arr.push(progress);
+            arr.push(testing);
+            arr.push(done);
+            console.log(arr);
+
+            //socket.emit('change',arr);
         },
         start: (event,ui)=>{
             ui.item.css('transform','rotate(10deg)');
@@ -83,10 +187,6 @@ $( function() {
         stop: (event,ui)=>{
             ui.item.css('transform','rotate(0deg)'); 
         }
-    });
-
-    $('.plus').click(()=>{
-        console.log('hola');
     });
 
     /*

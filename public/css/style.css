@@ -116,7 +116,10 @@ nav button:hover{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
 
+#testing:hover #testingWrap{
+    min-height: 100px;
 }
 
 .plholder{
@@ -146,16 +149,18 @@ nav button:hover{
     height: 40px;
     overflow: hidden;
 
-    transition: all 1s ease;
-}
-
-.plus:hover{
-    height: auto;
+    transition: height .5s ease;
 }
 
 .plus-sign{
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 90%;
     min-height: 35px;
+
+    transition: transform .5s ease;
+    transform-origin: 50% 50%;
 }
 
 /*      codigo redundante en estas dos cosas        */

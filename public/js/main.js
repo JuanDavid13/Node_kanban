@@ -23,7 +23,8 @@ cl.addEventListener('click',()=>{
 
 socket.on('list',(lists)=>{
     $('.sortable').empty();
-
+    console.log('lista:');
+    console.log(lists);
     for(let i = 0; i< lists.length ; i++){
         for(let j = 0; j < lists[i].length;j++){
 
@@ -179,7 +180,7 @@ $( function() {
             arr.push(done);
             console.log(arr);
 
-            //socket.emit('change',arr);
+            socket.emit('change',arr);
         },
         start: (event,ui)=>{
             ui.item.css('transform','rotate(10deg)');

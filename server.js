@@ -92,6 +92,13 @@ io.on('connection', (socket) =>{
     socket.on('change',(li)=>{
         console.log(li.length);
     });
+
+    socket.on('change',(arr)=>{
+        console.log('algo');
+        lists = arr;
+        console.log(lists[0][0][0]);
+        io.emit('list',lists);
+    });
     /*
     io.emit('list',list1);
     socket.on('clicked',(text)=>{

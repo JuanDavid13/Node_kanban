@@ -99,6 +99,12 @@ io.on('connection', (socket) =>{
         console.log(lists[0][0][0]);
         io.emit('list',lists);
     });
+
+    socket.on('new',(arr)=>{
+        lists[0].push(arr);
+        console.log(arr[0]);
+        io.emit('list',lists);
+    });
     /*
     io.emit('list',list1);
     socket.on('clicked',(text)=>{

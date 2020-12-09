@@ -11,15 +11,6 @@ const progress = document.getElementById('progressWrap');
 const testing = document.getElementById('testingWrap');
 const done = document.getElementById('doneWrap');
 
-/*
-cl.addEventListener('click',()=>{
-    //socket.emit('clicked','nose');
-    let e = new evento('tarea algo','algo');
-    console.log(e.getNombre());
-    e.setNombre('tarea 6');
-    console.log(e.getNombre());
-});
-*/
 
 socket.on('list',(lists)=>{
     $('.sortable').empty();
@@ -63,6 +54,16 @@ socket.on('list',(lists)=>{
 });
 
 $( function() {
+
+    $('#todoPlus-butt').click(()=>{
+
+        const nombre = $('#todoPlus-name').val();
+        const descripcion = $('#todoPlus-desc').val();
+        const fecha = $('#todoPlus-date').val();
+        const task = [nombre,descripcion,fecha];
+        console.log(task);
+        socket.emit('new',task);
+    });
     
     $('.plus').click((event)=>{
         event.preventDefault();

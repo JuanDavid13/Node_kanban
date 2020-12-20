@@ -1,6 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
+
+let todo = [];
+let progress = [];
+let testing = [];
+let done = [];
+let lists = [];
+/*
+console.log(todo);
+setTimeout(()=>{
+	const server = require('../server.js');
+	todo = server.todo;
+	console.log(todo);
+},3000);
+console.log(todo);
+*/
 let user = [
     ['juanito','algo'],
     ['maria','nose']
@@ -10,17 +25,10 @@ router.get('/', (req,res,next)=>{
     res.render('index');
 });
 
-
-let todo = [];
-let progress = [];
-let testing = [];
-let done = [];
-let lists = [];
 router.post('/', (req,res,next)=>{
     res.render('index');
 
     //console.log(req.body);
-    /*
     const server = require('../server.js');
     if(req.body.action == 'add'){
     	let aux = [];
@@ -41,7 +49,7 @@ router.post('/', (req,res,next)=>{
     }else if(req.body.action == 'delete'){
 	console.log('not implemented yet');
     }
-	*/
+
     /*
     if(req.body.action == 'delete'){
 	socket.emit('delete',req.body.col,req.body.number);	

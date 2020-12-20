@@ -81,8 +81,10 @@ io.on('connection', (socket) =>{
     io.emit('list',lists);
 
     socket.on('change',(arr)=>{
+        console.log('algo han tocado');
         lists = arr;
         io.emit('list',lists);
+	console.log(lists);
     });
     
 	socket.on('delete',(arr)=>{
@@ -97,13 +99,14 @@ io.on('connection', (socket) =>{
 	});
 
 	socket.on('add',(arr)=>{
+		console.log(arr);
 		let aux = [];
 		aux.push(arr[1],arr[2],arr[3]);
 		switch(arr[0]){
-			case '0':{lists[0].unshift(aux);};break;
-			case '1':{lists[1].unshift(aux);};break;
-			case '2':{lists[2].unshift(aux);};break;
-			case '3':{lists[3].unshift(aux);};break;
+			case '0':{todo.unshift(aux);};break;
+			case '1':{progress.unshift(aux);};break;
+			case '2':{testing.unshift(aux);};break;
+			case '3':{done.unshift(aux);};break;
 			default:{console.log('no ha entrado en ninguno');};break;
 		}
 		io.emit('list',lists);

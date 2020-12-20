@@ -1,4 +1,18 @@
 # Node_kanban
 
-#### Web Page
-If you want to go to the web page, click [here](https://node-kanban.herokuapp.com/).
+### Web Page
+If you want to access to the web page of the proyect, click [here](https://node-kanban.herokuapp.com/).
+
+### Local
+If you want to access to the proyect locally follow these symple steps:
+
+> In order to clone the proyect you need to have git already installed.
+> [here](https://www.youtube.com/watch?v=MFtsLRphqDM&ab_channel=TheNetNinja) you have a link, if you don't know how to install it.
+
+1. Create a folder where you want to store the proyect.
+2. Open a new terminal
+3. write:
+    `$ git clone https://github.com/JuanDavid13/Node_kanban.git`
+4. Once the proyect is cloned, write:
+    `npm install`
+5. Then you can write:

@@ -143,7 +143,7 @@ io.on('connection', (socket) =>{
 
 
 //listener
-server.listen(PORT,'localhost',()=>{
+server.listen(process.env.PORT,'localhost',()=>{
     console.log(`Server running at port: ${PORT}`);
 });
 

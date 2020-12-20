@@ -25,7 +25,7 @@ app.set('views',path.join(__dirname,'public'));
 app.set('view engine', 'ejs');
 
 //specify the port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 //Routes and middlewares
 app.use('/' ,router.router);
@@ -143,7 +143,7 @@ io.on('connection', (socket) =>{
 
 
 //listener
-server.listen(PORT,'localhost',()=>{
+server.listen(process.env.PORT,'localhost',()=>{
     console.log(`Server running at port: ${PORT}`);
 });
 

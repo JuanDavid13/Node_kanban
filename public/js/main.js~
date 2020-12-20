@@ -31,7 +31,8 @@ const done     = document.getElementById('done');
 /*
  *
  * SOCKET IO
- *
+ * 
+ * if the list event happend, render the list
  */
 socket.on('list',(list)=>{
     $('.sortable').empty();
@@ -44,27 +45,30 @@ socket.on('list',(list)=>{
  *	FUNCTIONS
  *
  */
+//this function return the background color of an element
 function getColor(element){
 	return $(element).css('backgroundColor');
 }
 
+//this function change the background color and text color for the given ones
 function changeColor(element,color1,color2){
 	$(element).css('backgroundColor',color1);
 	$(element).css('color',color2);
 }
 
+//this function set the colors of the buttons as default
 function setDefaultColor(element){
 	$(element).css('backgroundColor',col2);
 	$(element).css('color',col1);
 }
 
-
+//this function render the list given by the backend
 function render(list){
 	
   for(let i = 0; i< list.length ; i++){
     for(let j = 0; j < list[i].length;j++){
       const task = document.createElement('div');
-      task.innerHTML = `<div class="top"><span class="title">${list[i][j][0]}</span><span>#${j+1}</span></div><div class="description">${list[i][j][1]}</div><span class="date">${list[i][j][2]}</span>`;
+      task.innerHTML = `<div class="top"><span class="title">${list[i][j][0]}</span><span>#${j+1}</span></div><div class="description">${list[i][j][1]}</div><span class="date"><svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="18px" height="18px"><path d="M 6 1 L 6 3 L 3 3 L 3 21 L 21 21 L 21 3 L 18 3 L 18 1 L 16 1 L 16 3 L 8 3 L 8 1 L 6 1 z M 5 8 L 19 8 L 19 19 L 5 19 L 5 8 z"/></svg>${list[i][j][2]}</span>`;
        task.classList.add('task');
             
        switch(i){
@@ -84,7 +88,8 @@ function render(list){
   let cols;
   let aux   = [];
   let lists = [[],[],[],[]];
-  
+ 
+//this function turns the grid into an array with all the lists and tasks
 function getLists(){
   for(let a = 0; a < lists.length; a++){ lists[a] = []; }
   cols = grid.children;
@@ -115,7 +120,8 @@ function getLists(){
  */
 $( function() {	
 
-
+	//These two functions set the colors of the floating buttons
+	//It set the oppostite button to default color.
 	$(add).click(()=>{
 		setDefaultColor(del);
 		if(getColor(add) == col1){ 
@@ -133,7 +139,11 @@ $( function() {
 		}else{ changeColor(del,col1,col2); }
 		$('#deleteForm input').val('');
 	});
-
+	
+	//those two functions move the grid down and display the inputs
+	//if the buttons are clicked.
+	//If the buttons are clicek one more time, the inputs are hide and
+	//the grid is back to top.
 	$(add).click(()=>{
 		if(getColor(add) == col1){
 			$(grid).css('marginTop','100px');
@@ -160,11 +170,16 @@ $( function() {
 		}
 	});
 	
+	//these functions restart the values of the inputs
+	//once the buttons are clicked
 	$('#add').click(()=>{
 		setTimeout(()=>{$('#addForm input').val('');},250);
 	});
 
-
+	$('#delete').click(()=>{
+		setTimeout(()=>{$('#deleteForm input').val('');},250);
+	});
+	
 	/*
 	 *
 	 * ACTIONS
@@ -174,8 +189,6 @@ $( function() {
 		let aux = [];
 		aux.push($('input[type=radio]:checked').val(),$('#name').val(),$('#desc').val(),$('#date').val());
 		socket.emit('add',aux);
-		console.log('añadir');
-		console.log(aux);
 	});	
 	
 	$('#delete').click(()=>{
@@ -183,8 +196,6 @@ $( function() {
 		let aux = [];
 		aux.push($('input[type=radio]:checked').val(),task);
 		socket.emit('delete',aux);
-		console.log('eliminar');
-		console.log(aux);
 	});
 
 

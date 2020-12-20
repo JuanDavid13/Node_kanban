@@ -207,11 +207,28 @@ nav button:hover {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px 1fr 25px;
+  cursor: grab;
   padding: 20px;
   transition: box-shadow 0.25s ease, transform 0.25s ease;
   background-color: #1B1B1E;
   color: #E0E2DB;
   border-top: 2px solid #613DC1;
+}
+.task .title {
+  font-size: 1.1rem;
+  color: #E0E2DB;
+}
+.task .description {
+  font-size: 0.9rem;
+  color: #AB92BF;
+}
+.task .date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #E0E2DB;
+  opacity: 0.8;
 }
 
 .task:hover {
@@ -223,7 +240,7 @@ nav button:hover {
   width: 90%;
   height: 200px;
   margin: 10px auto;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .top {

@@ -195,6 +195,8 @@ nav{
 	grid-template-columns:1fr;
 	grid-template-rows: 50px 1fr 25px;
 	
+	cursor:grab;
+
 	padding:20px;
 
 	transition: box-shadow .25s ease, transform .25s ease;
@@ -202,6 +204,27 @@ nav{
 	color:$white;
 
 	border-top:2px solid $primary;
+
+	.title{
+		font-size:1.1rem;
+		color:$white;
+	}
+	.description{
+		font-size:.9rem;
+		color:$secondary;
+	}
+
+	.date{
+		display:flex;
+		flex-direction:row;
+		justify-content:flex-start;
+		align-items:center;
+
+		color:$white;
+		opacity:.8;
+
+	}
+
 }
 .task:hover{
 	box-shadow: 0 0 10px rgb(0,0,0,.5);
@@ -212,7 +235,7 @@ nav{
 	width:90%;
 	height:200px;
 	margin: 10px auto;
-	opacity:0.8;
+	opacity:0.6;
 }
 
 .top{

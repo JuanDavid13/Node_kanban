@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This meta is needed for google authentication-->
+    <!--<meta name="google-signin_id" content="896215279918-elc7iet2h4ckcm79m9dr5cq3r6oospkn.apps.googleusercontent.com">-->
+
     <title>Kanban Login</title>
+    <!--Link to the style file-->
     <link rel="stylesheet" href="./css/style.css">
 
     <!--            GOOGLE FONTS            -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!--		GOOGLE AUTH		-->
+    <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
 </head>
 <body>
     <div id="login-wrap">
@@ -18,26 +25,29 @@
         <div id="form-wrap">
             <div id="login" class="login">
                 <form action="/login" method="post">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">User:</label>
                     <input type="text" name="nombre" autocomplete="off" required>
-                    <label for="pass">ContraseÃ±a:</label>
+                    <label for="pass">Password:</label>
                     <input type="password" name="pass" autocomplete="off" required>
             
-                    <button type="submit" name="action" value="login">Entrar</button>
+                    <button type="submit" name="action" value="login">Log In</button>
                 </form>
             </div>
             <div id="signup" class="login">
 		<form action="/login" method="post">
-			<label for="nombre">Nombre:</label>
+			<label for="nombre">User:</label>
 			<input type="text" name="nombre" autocomplete="off" required>
 
-			<label for="pass">Contraseña</label>
+			<label for="pass">Password:</label>
 			<input type="password" name="pass" autocomplete="off" required>
 
-			<button type="submit" name="action" value="signup">Regístrate</button>
+			<label for="pass">Repeat the password:</label>
+			<input type="password" name="checkpass" autocomplete="off" required>
+
+			<button type="submit" name="action" value="signin">Sign In</button>
 		</form>
             </div>
-	    <button id="change">Registrate</button>
+	    <button id="change">Sign In</button>
         </div>
     </div>    
 

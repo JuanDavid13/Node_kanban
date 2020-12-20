@@ -1,84 +1,77 @@
+
+//these are requirementes
 const express = require('express');
+//these is the route module that epxress provide
 const router = express.Router();
 
+
+//Here I'm setting a bacis api for the website
+//if the client send a get or post petition
+//at '/' the index.ejs page will be render
+router.get('/', (req,res,next)=>{
+    res.render('index');
+});
+
+router.post('/', (req,res,next)=>{
+    res.render('index');
+});
+
+//if the client does a get petition to the '/login' route
+//the login.ejs page will be render
+router.get('/login', (req,res,next)=>{
+    res.render('login');
+});
+
+
+//here I set the initial list of registered users
 let user = [
     ['juanito','algo'],
     ['maria','nose']
 ]
 
-router.get('/', (req,res,next)=>{
-    res.render('index');
-});
-
-
-let todo = [];
-let progress = [];
-let testing = [];
-let done = [];
-let lists = [];
-router.post('/', (req,res,next)=>{
-    res.render('index');
-
-    //console.log(req.body);
-    /*
-    const server = require('../server.js');
-    if(req.body.action == 'add'){
-    	let aux = [];
-    	aux.push(req.body.nombre,req.body.desc,req.body.date);
-    	todo = server.todo;
-	progress = server.progress;
-	testing = server.testing;
-	done = server.done;
-	switch (req.body.col){
-		case 0:{ todo.push(aux); };    break;
-		case 1:{ progress.push(aux); };break;
-		case 2:{ testing.push(aux); }; break;
-		case 3:{ done.push(aux); };    break;
-		default:{};		       break;	
-	}
-	lists = [todo,progress,testing,done];
-    	
-    }else if(req.body.action == 'delete'){
-	console.log('not implemented yet');
-    }
-	*/
-    /*
-    if(req.body.action == 'delete'){
-	socket.emit('delete',req.body.col,req.body.number);	
-    }else{
-	socket.emit('add',req.body.col,req.body.nombre,req.body.desc,req.body,date);
-    }
-    */
-});
-
-router.get('/login', (req,res,next)=>{
-    res.render('login');
-});
-
+//if the client send a post petition to '/login'
+//depending of the action, it will do one thing or another.
 router.post('/login', (req,res,next)=>{
-    if(req.body.action == 'login'){
+    
+//if the user wants to login:
+if(req.body.action == 'login'){
+	//firstly it will check that all the fields have some content
 	if(req.body.nombre != '' || req.body.pass != ''){
+
+	//Then it will check if the user is at the user's list
 	  let i = 0;
 	  while(i<user.length){
 	    if(req.body.nombre == user[i][0] && req.body.pass == user[i][1]){
-	    	res.redirect('./');
+	    	//if the user is at the user's lists, then the client will be
+		//redirected to the kanban board or index.ejs page;
+		res.redirect('./');
 	    }else
 		i++;
 	  }
-	  res.redirect('./');
 	}
-    }else if(req.body.action == 'signup'){
-	if(req.body.nombre != '' || req.body.pass != ''){
+	//if the client is not at the user's list
+	//the client will be redirected back to the login page
+	    res.redirect('./login');
+//if the user wants to sig up
+    }else if(req.body.action == 'signin'){
+	//fistly it check that all the fields have some content and that both passwords are the same
+	if(req.body.nombre != '' && req.body.pass != '' && (req.body.pass == req.body.checkpass)){
+	//if the those requirements are ok, a new user is added to the user's list
+	//with the help of an auxiliar array
 	  let aux = [];
+	//the data from the form is catched and pushed to the auxiliar array
 	  aux.push(req.body.nombre,req.body.pass);
+	//the the user is added to the user's list
 	  user.push(aux);
+	//and the client is redirected to the kanban board or index.ejs
  	  res.redirect('./');
 	}
+	    //if the inputs failed the client is sent back to the login page
+	    res.redirect('./login');
     }
+	//just in case something fails, the client is sent to the login page
     	res.redirect('./login');
-    //console.log(user);
-    //console.log(req.body);
 });
 
-
-module.exports = {router,lists};
+//In this page the router has to be exported so it can be used at the server.js file
+module.exports = { router };

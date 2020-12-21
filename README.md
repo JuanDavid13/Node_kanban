@@ -41,7 +41,7 @@ to start the server.
 #### User creation and Log in
 If you want to Log In or Sign Up, go to
 
-    `localhost:80/login`
+     `localhost:80/login`
 
 If you want to Log In just fill the gaps and click Log In.
 

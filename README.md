@@ -16,22 +16,31 @@ If you want to access to the proyect locally follow these symple steps:
     `$ git clone https://github.com/JuanDavid13/Node_kanban.git`
     
 4. Once the proyect is cloned, write:
+
     `$ npm install`
+
 to install all the dependencies.
 5. Then you can write:
+
     `$ npm start`
+
 to start the server.
 6. It will show you a message at your shell like this
+
     `$ Server running at port: 80`
+    
 7. Open your favourite browser.
 8. Type:
+
     `localhost:80`
+    
 9. There you go, you should be watching the proyect's board.
 
 ### Usage
 
 #### User creation and Log in
 If you want to Log In or Sign Up, go to
+
     `localhost:80/login`
 
 If you want to Log In just fill the gaps and click Log In.

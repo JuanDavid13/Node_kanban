@@ -12,7 +12,9 @@ If you want to access to the proyect locally follow these symple steps:
 1. Create a folder where you want to store the proyect.
 2. Open a new terminal.
 3. write:
+
     `$ git clone https://github.com/JuanDavid13/Node_kanban.git`
+    
 4. Once the proyect is cloned, write:
     `$ npm install`
 to install all the dependencies.
